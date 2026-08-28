@@ -1,0 +1,9 @@
+[package]
+name = "kana-term"
+version = "0.1.0"
+edition = "2021"
+description = "Terminal gojūon trainer for hiragana and katakana"
+
+[dependencies]
+rand = "0.8"
+ratatui = "0.29"
