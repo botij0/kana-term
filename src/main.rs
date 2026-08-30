@@ -1,3 +1,4 @@
+mod big_kana;
 mod ui;
 
 use std::io::{self, Write};

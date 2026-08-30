@@ -5,5 +5,7 @@ edition = "2021"
 description = "Terminal gojūon trainer for hiragana and katakana"
 
 [dependencies]
+embedded-graphics = "0.8.2"
+mplusfonts = "0.3.4"
 rand = "0.8"
 ratatui = "0.29"

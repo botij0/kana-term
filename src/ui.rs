@@ -1,6 +1,7 @@
 use std::io;
 use std::time::{Duration, Instant};
 
+use crate::big_kana::ResponsiveKana;
 use kana_term::{Drill, Phase, Script, StatRow, STREAK_TO_LEVEL};
 use ratatui::crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers};
 use ratatui::layout::{Alignment, Constraint, Layout, Rect};
@@ -187,14 +188,6 @@ fn inset(area: Rect, percent: u16) -> Rect {
     .split(area)[1]
 }
 
-fn spaced_kana(prompt: &str) -> String {
-    prompt
-        .chars()
-        .map(|c| c.to_string())
-        .collect::<Vec<_>>()
-        .join("   ")
-}
-
 fn streak_bar(streak: u8) -> String {
     let filled = streak as usize;
     let empty = STREAK_TO_LEVEL as usize - filled;
@@ -322,9 +315,8 @@ fn draw_drill(frame: &mut Frame, drill: &Drill) {
     let inner = block.inner(kana_area);
     frame.render_widget(block, kana_area);
     frame.render_widget(
-        vcenter(
-            spaced_kana(drill.prompt()),
-            inner.height,
+        ResponsiveKana::new(
+            drill.prompt(),
             Style::default().fg(kana_fg).add_modifier(Modifier::BOLD),
         ),
         inner,
